@@ -12,13 +12,14 @@
 #import "CCoverflowCollectionViewLayout.h"
 
 static NSString *const DECKCELLIDENTIFIER = @"Deck Cell";
-static NSUInteger const NUMBEROFVISABLECARDS = 5;
+static NSUInteger const NUMBEROFCARDSINPLAYTOSTART = 0;
 
 @interface TJWViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+
 @property (strong, nonatomic) NSMutableArray *cards;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet TJWDeckLayout *deckLayout;
-@property (nonatomic) NSUInteger numberOfVisableCards;
+@property (nonatomic) NSUInteger numberOfCardsInPlay;
 
 @end
 
@@ -43,16 +44,10 @@ static NSUInteger const NUMBEROFVISABLECARDS = 5;
         [tempArray addObject:[UIColor colorWithRed:redValue green:greenValue blue:blueValue alpha:1.0f]];
     }
     
-    self.numberOfVisableCards = NUMBEROFVISABLECARDS;
+    self.numberOfCardsInPlay = NUMBEROFCARDSINPLAYTOSTART;
     
     self.cards = [NSMutableArray arrayWithArray:tempArray];
     
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)coverFlowButtonPressed:(UIButton *)sender
@@ -64,12 +59,11 @@ static NSUInteger const NUMBEROFVISABLECARDS = 5;
 
 - (IBAction)dealCard:(UIBarButtonItem *)sender
 {
-    int indexOfTopCard = [self.cards count] - self.numberOfVisableCards - 1;
+    int indexOfTopCard = [self.cards count] - self.numberOfCardsInPlay - 1;
     if ([self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:indexOfTopCard inSection:1]]) {
         [self.collectionView performBatchUpdates:^{
-            self.numberOfVisableCards++;
-            //int indexOfTopCard = [self.cards count] - self.numberOfVisableCards - 1;
-            [self.collectionView moveItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:1] toIndexPath:[NSIndexPath indexPathForItem:self.numberOfVisableCards - 1 inSection:0]];
+            self.numberOfCardsInPlay++;
+            [self.collectionView moveItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:1] toIndexPath:[NSIndexPath indexPathForItem:self.numberOfCardsInPlay - 1 inSection:0]];
         } completion:nil];
     }
 }
@@ -80,7 +74,7 @@ static NSUInteger const NUMBEROFVISABLECARDS = 5;
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:tapLocation];
     if (indexPath && indexPath.section == 0) {
         [self.collectionView performBatchUpdates:^{
-            self.numberOfVisableCards--;
+            self.numberOfCardsInPlay--;
             [self.cards removeObjectAtIndex:indexPath.item];
             [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
         } completion:nil];
@@ -89,13 +83,15 @@ static NSUInteger const NUMBEROFVISABLECARDS = 5;
 
 }
 
+#pragma mark - Collection View Data Source
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return self.numberOfVisableCards;
+        return self.numberOfCardsInPlay;
     }
     else {
-        return [self.cards count] - self.numberOfVisableCards;
+        return [self.cards count] - self.numberOfCardsInPlay;
     }
 }
 
@@ -103,7 +99,7 @@ static NSUInteger const NUMBEROFVISABLECARDS = 5;
 {
     TJWCardCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DECKCELLIDENTIFIER forIndexPath:indexPath];
     
-    cell.backgroundColor = (indexPath.section == 0) ? self.cards[indexPath.item] : self.cards[indexPath.item];
+    cell.backgroundColor = (indexPath.section == 0) ? self.cards[indexPath.item] : self.cards[indexPath.item  + self.numberOfCardsInPlay];
     
     return cell;
 }
@@ -116,7 +112,7 @@ static NSUInteger const NUMBEROFVISABLECARDS = 5;
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-        self.deckLayout.numberOfColums = 3;
+        self.deckLayout.numberOfColums = 5;
         
         // handle insets for iPhone 4 or 5
         CGFloat sideInset = [UIScreen mainScreen].preferredMode.size.width == 1136.0f ?
@@ -125,7 +121,7 @@ static NSUInteger const NUMBEROFVISABLECARDS = 5;
         self.deckLayout.itemInsets = UIEdgeInsetsMake(22.0f, sideInset, 13.0f, sideInset);
         
     } else {
-        self.deckLayout.numberOfColums = 2;
+        self.deckLayout.numberOfColums = 4;
         self.deckLayout.itemInsets = UIEdgeInsetsMake(22.0f, 22.0f, 13.0f, 22.0f);
     }
 }
