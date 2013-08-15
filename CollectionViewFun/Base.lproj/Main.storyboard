@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4471.1" systemVersion="12E3067" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Mvw-iZ-nwr">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3697.3"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="8Yn-aQ-IiX">
+            <objects>
+                <viewController id="6YW-wp-cGV" customClass="TJWViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RUV-DF-9YR"/>
+                        <viewControllerLayoutGuide type="bottom" id="6JN-et-xnx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="257-Rf-c0j">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="j7F-1U-680">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <gestureRecognizers/>
+                                <collectionViewLayout key="collectionViewLayout" id="GcE-6N-PzL" customClass="TJWDeckLayout"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="F4F-be-l6I">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="6YW-wp-cGV" id="qvW-RC-vEr"/>
+                                    <outlet property="delegate" destination="6YW-wp-cGV" id="cEO-ir-MPr"/>
+                                    <outletCollection property="gestureRecognizers" destination="a5c-oC-CT7" appends="YES" id="ZD8-fl-g5D"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNV-Xl-36i">
+                                <rect key="frame" x="20" y="80" width="174" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Go To Cover Flow">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="coverFlowButtonPressed:" destination="6YW-wp-cGV" eventType="touchUpInside" id="bR2-1d-6S3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="j7F-1U-680" firstAttribute="top" secondItem="257-Rf-c0j" secondAttribute="top" id="IG1-1N-bei"/>
+                            <constraint firstItem="j7F-1U-680" firstAttribute="trailing" secondItem="257-Rf-c0j" secondAttribute="trailing" id="s1l-KA-Uol"/>
+                            <constraint firstItem="j7F-1U-680" firstAttribute="leading" secondItem="257-Rf-c0j" secondAttribute="leading" id="vMc-4a-eWV"/>
+                            <constraint firstItem="j7F-1U-680" firstAttribute="bottom" secondItem="257-Rf-c0j" secondAttribute="bottom" id="x5u-mQ-PUr"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="KTv-4Y-bUS">
+                        <nil key="title"/>
+                        <barButtonItem key="rightBarButtonItem" title="Deal" id="VeT-gy-2Ll">
+                            <connections>
+                                <action selector="dealCard:" destination="6YW-wp-cGV" id="Dex-sw-VSo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionView" destination="j7F-1U-680" id="cGL-XI-JtQ"/>
+                        <outlet property="deckLayout" destination="GcE-6N-PzL" id="YNn-bv-AsV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4wB-BD-HCB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="a5c-oC-CT7">
+                    <connections>
+                        <action selector="tapGestureRecognized:" destination="6YW-wp-cGV" id="roj-JB-afT"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="769" y="45"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zjg-o5-0l2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mvw-iZ-nwr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="44R-33-PTD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6YW-wp-cGV" kind="relationship" relationship="rootViewController" id="9e3-du-rAw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7EB-7t-XVU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="243" y="45"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
