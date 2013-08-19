@@ -21,6 +21,7 @@
 		F52B19DB17B968E200C1F720 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52B19BD17B968E200C1F720 /* UIKit.framework */; };
 		F52B19E317B968E200C1F720 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F52B19E117B968E200C1F720 /* InfoPlist.strings */; };
 		F52B19E517B968E200C1F720 /* CollectionViewFunTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F52B19E417B968E200C1F720 /* CollectionViewFunTests.m */; };
+		F544DC6117C1A281008ABCF4 /* MenuLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F544DC6017C1A281008ABCF4 /* MenuLayout.m */; };
 		F54C9D8A17BAB4D30006AD89 /* CBetterCollectionViewLayoutAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = F54C9D8117BAB4D30006AD89 /* CBetterCollectionViewLayoutAttributes.m */; };
 		F54C9D8B17BAB4D30006AD89 /* CCoverflowCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F54C9D8317BAB4D30006AD89 /* CCoverflowCollectionViewLayout.m */; };
 		F54C9D8C17BAB4D30006AD89 /* CInterpolator.mm in Sources */ = {isa = PBXBuildFile; fileRef = F54C9D8517BAB4D30006AD89 /* CInterpolator.mm */; };
@@ -61,6 +62,8 @@
 		F52B19E017B968E200C1F720 /* CollectionViewFunTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CollectionViewFunTests-Info.plist"; sourceTree = "<group>"; };
 		F52B19E217B968E200C1F720 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F52B19E417B968E200C1F720 /* CollectionViewFunTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewFunTests.m; sourceTree = "<group>"; };
+		F544DC5F17C1A281008ABCF4 /* MenuLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuLayout.h; sourceTree = "<group>"; };
+		F544DC6017C1A281008ABCF4 /* MenuLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuLayout.m; sourceTree = "<group>"; };
 		F54C9D8017BAB4D30006AD89 /* CBetterCollectionViewLayoutAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBetterCollectionViewLayoutAttributes.h; sourceTree = "<group>"; };
 		F54C9D8117BAB4D30006AD89 /* CBetterCollectionViewLayoutAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBetterCollectionViewLayoutAttributes.m; sourceTree = "<group>"; };
 		F54C9D8217BAB4D30006AD89 /* CCoverflowCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCoverflowCollectionViewLayout.h; sourceTree = "<group>"; };
@@ -144,6 +147,7 @@
 				F5542D2417B96A6100AA763E /* TJWDeckLayout.m */,
 				F5542D2617B96B7500AA763E /* TJWCardCell.h */,
 				F5542D2717B96B7500AA763E /* TJWCardCell.m */,
+				F544DC6217C1A284008ABCF4 /* Menu Layout */,
 				F54C9D8F17BAB4DF0006AD89 /* Cover Flow Layout */,
 				F52B19D117B968E200C1F720 /* Images.xcassets */,
 				F52B19C017B968E200C1F720 /* Supporting Files */,
@@ -180,6 +184,15 @@
 				F52B19E117B968E200C1F720 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F544DC6217C1A284008ABCF4 /* Menu Layout */ = {
+			isa = PBXGroup;
+			children = (
+				F544DC5F17C1A281008ABCF4 /* MenuLayout.h */,
+				F544DC6017C1A281008ABCF4 /* MenuLayout.m */,
+			);
+			name = "Menu Layout";
 			sourceTree = "<group>";
 		};
 		F54C9D8F17BAB4DF0006AD89 /* Cover Flow Layout */ = {
@@ -302,6 +315,7 @@
 				F5542D2517B96A6100AA763E /* TJWDeckLayout.m in Sources */,
 				F52B19CA17B968E200C1F720 /* TJWAppDelegate.m in Sources */,
 				F54C9D8A17BAB4D30006AD89 /* CBetterCollectionViewLayoutAttributes.m in Sources */,
+				F544DC6117C1A281008ABCF4 /* MenuLayout.m in Sources */,
 				F52B19D017B968E200C1F720 /* TJWViewController.m in Sources */,
 				F52B19C617B968E200C1F720 /* main.m in Sources */,
 				F54C9D8D17BAB4D30006AD89 /* Interpolator.cpp in Sources */,

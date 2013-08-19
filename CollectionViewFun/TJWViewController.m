@@ -10,6 +10,7 @@
 #import "TJWDeckLayout.h"
 #import "TJWCardCell.h"
 #import "CCoverflowCollectionViewLayout.h"
+#import "MenuLayout.h"
 
 static NSString *const DECKCELLIDENTIFIER = @"Deck Cell";
 static NSUInteger const NUMBEROFCARDSINPLAYTOSTART = 0;
@@ -49,13 +50,23 @@ static NSUInteger const NUMBEROFCARDSINPLAYTOSTART = 0;
     self.cards = [NSMutableArray arrayWithArray:tempArray];
     
 }
-
-- (IBAction)coverFlowButtonPressed:(UIButton *)sender
+- (IBAction)segementedControlValueChanged:(UISegmentedControl *)sender
 {
-    [self.collectionView.collectionViewLayout invalidateLayout];
-    CCoverflowCollectionViewLayout *layout = [[CCoverflowCollectionViewLayout alloc] init];
-    [self.collectionView setCollectionViewLayout:layout animated:YES];
+    if (sender.selectedSegmentIndex == 0) {
+        
+    } else if (sender.selectedSegmentIndex == 1) {
+        [self.collectionView.collectionViewLayout invalidateLayout];
+        CCoverflowCollectionViewLayout *layout = [[CCoverflowCollectionViewLayout alloc] init];
+        [self.collectionView setCollectionViewLayout:layout animated:YES];
+    } else if (sender.selectedSegmentIndex == 2) {
+        [self.collectionView.collectionViewLayout invalidateLayout];
+        MenuLayout *layout = [[MenuLayout alloc] init];
+        [self.collectionView setCollectionViewLayout:layout animated:YES];
+    }
 }
+
+
+
 
 - (IBAction)dealCard:(UIBarButtonItem *)sender
 {
@@ -66,6 +77,15 @@ static NSUInteger const NUMBEROFCARDSINPLAYTOSTART = 0;
             [self.collectionView moveItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:1] toIndexPath:[NSIndexPath indexPathForItem:self.numberOfCardsInPlay - 1 inSection:0]];
         } completion:nil];
     }
+    
+    if ([self.collectionView.collectionViewLayout isKindOfClass:[MenuLayout class]])
+    {
+        MenuLayout *layout = (MenuLayout *)self.collectionView.collectionViewLayout;
+        [self.collectionView performBatchUpdates:^{
+                layout.expanded = !layout.expanded;
+        } completion:nil];
+    }
+    
 }
 
 - (IBAction)tapGestureRecognized:(UITapGestureRecognizer *)sender
@@ -125,5 +145,17 @@ static NSUInteger const NUMBEROFCARDSINPLAYTOSTART = 0;
         self.deckLayout.itemInsets = UIEdgeInsetsMake(22.0f, 22.0f, 13.0f, 22.0f);
     }
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.collectionView.collectionViewLayout isKindOfClass:[MenuLayout class]])
+    {
+        MenuLayout *layout = (MenuLayout *)self.collectionView.collectionViewLayout;
+        [self.collectionView performBatchUpdates:^{
+            layout.expanded = !layout.expanded;
+        } completion:nil];
+    }
+}
+
 
 @end
